@@ -1,3 +1,23 @@
+def outofbaseten(innum, outbase):
+    """
+    takes an integer in base 10, and converts it into abitrary base outbase
+    """
+    if innum.isinteger() is False:
+        raise ValueError("outofbaseten() only works with integer input")
+    if innum == 0:
+        return [0]
+    import math
+    magnitude = math.floor(math.log(innum)/math.log(outbase))
+    worknum = innum
+    out = []
+    for i in range(magnitude+1):
+        digitsize = outbase ** (magnitude - i)
+        digit = math.floor(worknum/digitsize)
+        out.append(digit)
+        worknum = worknum - digit * digitsize
+    return out
+
+
 def baseconvert(innum, inbase, outbase):
     """
     values:
@@ -27,8 +47,4 @@ def baseconvert(innum, inbase, outbase):
         innum_string_representation += str(i)
     inint = int(innum_string_representation)
     return inint
-
-#TODO github
-#TODO code for conversion to abritrary base
-
-print(baseconvert(10,10,10))
+    ### end joseph's bit
