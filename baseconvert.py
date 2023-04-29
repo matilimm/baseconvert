@@ -1,6 +1,6 @@
 def outofbaseten(innum, outbase):
     """
-    values:
+    input:
         innum: integer: the number to be converted
         outbase: the base that innum is to be converted into
     output: list of integers: innum converted into a number in base outbase, in the form (1st digit, 2nd digit,etc)
@@ -27,7 +27,7 @@ def outofbaseten(innum, outbase):
 
 def intobaseten(innum, inbase):
     """
-    values:
+    input:
         innum: list of integers: number to be converted into base 10 in the form (1st digit, 2nd digit,etc)
         inbase: the base that innum is in
     output: interger: the value of innum as an integer
@@ -41,13 +41,62 @@ def intobaseten(innum, inbase):
         value += magnutude * digit
     return value
 
+def deprettify(innum):
+    """
+    input:
+        innum: string: a number in base between 2 and 64 inclusive writen as a string eg: "15", "7C", or "a+"
+    output: list of integers: the same number as innum but in the form of a list of each digit as an integer
+
+    converts numbers writen as strings in arbritrary bases up to 64 into the list form that other functions work on.
+    note that this only works with bases up to 64 and expects upper case letters, then lower case letters, then '+' then '/' for digits higher than 9.
+    """
+    outnum = []
+    for i in innum:
+        try:
+            int(i)
+        except ValueError:
+            if i == '+':
+                outnum.append(62)
+            elif i == '/':
+                outnum.append(63)
+            elif i.isupper() is True:
+                outnum.append(ord(i)-55)
+            else:
+                outnum.append(ord(i)-61)
+        else:
+            outnum.append(int(i))
+    return outnum
+
+def prettify(innum):
+    """
+    input:
+        innnum: list of integers: a number in the form of a list of digits
+    output: string: the number innum represented as a string
+
+    converts numbers from the list forn used by other functions in this library into a string. the output will use 0 to 9 for digits with value up to 9, then upper case letters, then lower case letters, then '+', and '/' for 62 and 63.
+    """
+    outnum = ''
+    for i in innum:
+        if i < 10:
+            outnum += str(i)
+        elif i < 36:
+            outnum += chr(i+55)
+        elif i < 62:
+            outnum += chr(i+61)
+        elif i == 62:
+            outnum += '+'
+        elif i == 63:
+            outnum += '/'
+        else:
+            raise ValueError("prettify() only works with numbers in a base no more than 64")
+    return outnum
 
 def baseconvert(innum, inbase, outbase):
     """
-    values:
-    innum: list of integers: the number to be converted. each item in the list represents a digit
-    inbase: ineger: the numerical base that innum is in
-    outbase: integer: the numerical base that the function will output
+    input:
+        innum: list of integers: the number to be converted. each item in the list represents a digit
+        inbase: ineger: the numerical base that innum is in
+        outbase: integer: the numerical base that the function will output
 
     for now the function only works with inbase = 10
     ill do the other bit later
