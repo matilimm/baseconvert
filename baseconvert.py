@@ -36,8 +36,8 @@ def intobaseten(innum, inbase):
     """
     value = 0
     length = len(innum)
-    for count, digit in enumerate(innum):
-        magnutude = inbase ^ (length - count)
+    for count, digit in enumerate(iterable=innum,start=1):
+        magnutude = inbase ** (length - count)
         value += magnutude * digit
     return value
 
@@ -115,8 +115,5 @@ def baseconvert(innum, inbase, outbase):
         if int(i) > inbase:
             raise ValueError('the digit at position'+str(index)+'is greater than the base')
 
-    innum_string_representation = ''
-    for i in innum:
-        innum_string_representation += str(i)
-    inint = int(innum_string_representation)
+    inint = intobaseten(innum=innum,inbase=inbase)
     return outofbaseten(inint,outbase)
