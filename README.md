@@ -82,9 +82,19 @@ this gives:
 ## Explanation
 We write numbers using a positional base ten (decimal) system. That means that we use ten unique symbols to write numbers, ten being the radix or base of the system. The symbols used are 0 and the digits 1 to 9. We use these to write larger numbers by multiplying each digit by a power of the base, so the right most digit is mustilplied by $10^0$ ie. 1, and then $10^1$, $10^2$, etc. moving left. so a number like 512 can thought of as shorthand for $(5 \times 10^2)+(1 \times 10^1)+(2 \times 10^0)$.\
 Simmilarly, you can use any natural number as a radix, some common bases are 2 (binary), 16 (hexadecimal), and 12 (dozenal). So a number in hexadecimal like 6A3 can be read as $(6 \times 16^2)+(10 \times 16^1)+(3 \times 16^0)$.\
-For bases larger than 10, digits larger than 9 are writen in a number of ways, the most common is to use the upper case latin letters A-Z, then if higher digits are needed, lower case a-z can be used. This is the approach taken by most implemenations of base64, a common radix used for data storage, as a digit of base64 uses exactly 6 bits of memory, and around the upper limit of what can be easily human readable. the digits 0 to 9, along with the upper and lower case latin alphabet compromise 62 symbols, so only two more are needed, usually + and /, to make 64.
+For bases larger than 10, digits larger than 9 are writen in a number of ways, the most common is to use the upper case latin letters A-Z, then if higher digits are needed, lower case a-z can be used. This is simmilar to the approach taken by most implemenations of base64, a common radix used for data storage, as a digit of base64 uses exactly 6 bits of memory, and around the upper limit of what can be easily human readable. the digits 0 to 9, along with the upper and lower case latin alphabet compromise 62 symbols, so only two more are needed, usually + and /, to make 64. Actual base64 usually puts the digits 0 to 9 after the upper and lower case letters. baseconvert does not do that.
 
 ## Reference
 
+### List of functionallity
+The following functions are written in baseconvert:
+- `prettify`
+- `deprittify`
+- `intobaseten`
+- `outofbaseten`
+- `baseconvert`
+
 ### Bibliography
-https://ia600308.us.archive.org/5/items/TheUniversalHistoryOfNumbers/212027005-The-Universal-History-of-Numbers_text.pdf
+
+The wikipedia pages for positional notation and radix give a good dicription of how positional number systems work, including discriptions of more non-standard systems such as negative and non-ineger bases, and bijective numerical systems.
+

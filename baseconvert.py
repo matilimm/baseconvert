@@ -98,8 +98,7 @@ def baseconvert(innum, inbase, outbase):
         inbase: ineger: the numerical base that innum is in
         outbase: integer: the numerical base that the function will output
 
-    for now the function only works with inbase = 10
-    ill do the other bit later
+    convert a number writen as a list of digits from one arbitrary base to another
     """
     if inbase == 0:
         raise ValueError('base 0 is not possible')
